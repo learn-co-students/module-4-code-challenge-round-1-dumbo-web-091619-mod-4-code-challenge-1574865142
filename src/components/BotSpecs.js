@@ -21,6 +21,7 @@ const BotSpecs = props => {
 
   return (
     <div className="ui segment">
+      <h1 style={{textAlign: "center"}}>Bot Specs</h1>
       <div className="ui two column centered grid">
         <div className="row">
           <div className="four wide column">
@@ -61,7 +62,7 @@ const BotSpecs = props => {
             <button
               className="ui button fluid"
               onClick={() =>
-                console.log('connect this to a function that shows all bots')
+                props.showCollection()
               }
             >
               Go Back
@@ -69,9 +70,7 @@ const BotSpecs = props => {
             <button
               className="ui button fluid"
               onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
+                props.enlistBot(bot)
               }
             >
               Enlist
