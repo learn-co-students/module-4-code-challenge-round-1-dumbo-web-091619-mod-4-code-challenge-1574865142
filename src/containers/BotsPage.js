@@ -3,32 +3,44 @@ import BotCollection from "./BotCollection";
 import YourBotArmy from "./YourBotArmy";
 
 class BotsPage extends React.Component {
-   
+  
+  
   state = {
+    robots: [],
     isClicked: false,
     botArmy: []
   }
 
-  // displayBot = () => {
-    
-  // }
+  componentDidMount() {
+    fetch("https://bot-battler-api.herokuapp.com/api/v1/bots")
+      .then(res => res.json())
+      .then(data => this.setState({
+      robots: data
+    }))
+}
   
 
-   handleClick = (id) => {
-     console.log('clicked')
-     console.log(id)
-     this.setState({
-      //  isClicked: !this.state.isClicked,
+   handleClick = (botObj, isAdding) => {
+     if (isAdding) {
+       this.setState({
+         botArmy: [...this.state.botArmy, botObj]
+ 
+       })
+     } else {
+       this.setState({
+         botArmy: this.state.botArmy.filter(bot => bot.id !== botObj.id)
+       })
+     }
+    
 
-     })
   }
 
   render() {
-    const allRobots = this.props.robots.map((robot) => <BotCollection robot={robot} key={robot.id} handleClick={this.handleClick}/>)
+    
     return (
       <div>
-        <YourBotArmy handleClick={this.handleClick} clicked={this.state}/>
-        {allRobots}
+        <YourBotArmy bot={this.state.botArmy} handleClick={this.handleClick} clicked={this.state} />
+        <BotCollection robots={this.state.robots} handleClick={this.handleClick} />
       </div>
     );
   }

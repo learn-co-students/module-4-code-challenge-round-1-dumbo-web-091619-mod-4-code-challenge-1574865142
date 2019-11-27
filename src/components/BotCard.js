@@ -9,7 +9,6 @@ const BotCard = props => {
   let botType;
 
   
-
   switch (bot.bot_class) {
     case "Assault":
       botType = <i className="icon military" />;
@@ -29,7 +28,7 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => props.handleClick(bot.id)}
+        onClick={() => props.handleClick(bot, props.isAdding)}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />

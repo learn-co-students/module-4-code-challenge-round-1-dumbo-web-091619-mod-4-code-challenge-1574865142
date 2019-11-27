@@ -2,34 +2,17 @@ import React from "react";
 import BotCard from "../components/BotCard";
 
 class YourBotArmy extends React.Component {
-  
-  state = {
-    botArmy: [],
-    displayBot: false
-  }
-
-//   handleClick = (id) => {
-//     console.log('clicked')
-//     console.log(id)
-//  }
 
 
-  addBots = () => {
-    if (this.props.clicked) {
-      this.setState({
-        // botArmy => that specific bot
-      }) 
-    }
-  }
   
 
   render() {
-    console.log(this.props)
+    const allRobots = this.props.bot.map((robot) => <BotCard bot={robot} key={robot.id} isAdding={false} handleClick={this.props.handleClick}/>)
     return (
       <div className="ui segment inverted olive bot-army">
         <div className="ui five column grid">
           <div className="row bot-army-row">
-            {/*return the state array of army*/}
+            {allRobots}
             {/*<BotCard bot={this.state.botArmy}/>*/}
           </div>
         </div>
