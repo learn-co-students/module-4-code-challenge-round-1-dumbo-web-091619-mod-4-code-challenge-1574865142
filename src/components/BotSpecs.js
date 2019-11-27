@@ -21,6 +21,7 @@ const BotSpecs = props => {
 
   return (
     <div className="ui segment">
+      <h1 style={{textAlign: "center"}}>Bot Specs</h1>
       <div className="ui two column centered grid">
         <div className="row">
           <div className="four wide column">

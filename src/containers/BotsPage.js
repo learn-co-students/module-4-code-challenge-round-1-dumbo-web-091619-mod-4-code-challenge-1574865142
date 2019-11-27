@@ -26,14 +26,12 @@ class BotsPage extends React.Component {
   enlistBot = (bot) => {
     if(!this.state.botArmy.includes(bot)){
       this.setState({
-        botArmy: [...this.state.botArmy, bot]
+        botArmy: [...this.state.botArmy, bot],
+        viewCollection: true
       })
     } else {
       alert("This bot is already in your army!")
     }
-    this.setState({
-      viewCollection: true
-    })
   }
 
   showCollection = () => {
@@ -60,7 +58,7 @@ class BotsPage extends React.Component {
 
   render() {
     const botCollection = <BotCollection bots={this.state.bots} handleClick={this.handleCollectionClick} />
-    const botSpecs = <BotSpecs bot={this.state.selectedBot} enlistBot={this.enlistBot} showCollection={this.showCollection}/>
+    const botSpecs = <BotSpecs bot={this.state.selectedBot} enlistBot={this.enlistBot} showCollection={this.showCollection} enlisted={this.state.enlisted}/>
 
     return (
       <div>

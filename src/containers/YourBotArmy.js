@@ -12,6 +12,7 @@ class YourBotArmy extends React.Component {
     })
     return (
       <div className="ui segment inverted olive bot-army">
+        <h1 style={{textAlign: "center"}}>Your Bot Army</h1>
         <div className="ui five column grid">
           <div className="row bot-army-row">
             {renderedBots}

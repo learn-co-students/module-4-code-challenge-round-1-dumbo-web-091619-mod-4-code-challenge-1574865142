@@ -12,11 +12,14 @@ class BotCollection extends React.Component {
 		  )
 	  })
   	return (
+	<div>
+     <h1 style={{textAlign: "center"}}>Bot Collection</h1>
   	  <div className="ui four column grid">
     		<div className="row">
     		  {renderedBots}
     		</div>
   	  </div>
+	</div>
   	);
   }
 
