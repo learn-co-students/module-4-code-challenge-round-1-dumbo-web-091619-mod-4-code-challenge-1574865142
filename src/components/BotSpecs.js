@@ -19,6 +19,14 @@ const BotSpecs = props => {
       botType = <div />;
   }
 
+  const enlist = () => {
+    props.addToArmy(props.bot)
+  }
+
+  const back = () => {
+    props.goBack()
+  }
+
   return (
     <div className="ui segment">
       <div className="ui two column centered grid">
@@ -60,19 +68,13 @@ const BotSpecs = props => {
             </div>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log('connect this to a function that shows all bots')
-              }
+              onClick={back}
             >
               Go Back
             </button>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
-              }
+              onClick={enlist}
             >
               Enlist
             </button>
