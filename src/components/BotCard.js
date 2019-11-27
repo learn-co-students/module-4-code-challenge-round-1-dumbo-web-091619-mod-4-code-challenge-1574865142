@@ -26,7 +26,9 @@ const BotCard = props => {
       props.removeBotFromArmy(props.bot)
     }
   }
+   
 
+  
   return (
     <div className="ui column">
       <div
