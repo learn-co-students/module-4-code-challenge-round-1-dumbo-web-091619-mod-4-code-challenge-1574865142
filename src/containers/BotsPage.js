@@ -9,7 +9,8 @@ class BotsPage extends React.Component {
     bots: [],
     yourBots: [],
     bot: null,
-    sortBy: 'all'
+    sortBy: 'all',
+    filterBy: ''
   }
 
   updateYourBots = (bot, toAdd) => {
@@ -27,7 +28,7 @@ class BotsPage extends React.Component {
 
   viewBotsSpecs = (bot) => this.setState({ bot })
   
-  updateSortBy = (sortBy) => sortBy !== this.state.sortBy ? this.setState({ sortBy, bot: null }) : null
+  updateSortBy = (sortBy) => sortBy !== this.state.sortBy ? this.setState({ sortBy, bot: null, filterBy: '' }) : null
 
   sortedBots = () => {
     const { sortBy, bots } = this.state
@@ -43,6 +44,10 @@ class BotsPage extends React.Component {
       return bots
     }
   }
+
+  changeFilterBy = (filterBy) => this.setState({ filterBy })
+  filterBots = (bots) => bots.filter(bot => bot.name.toLowerCase().replace('-', '').includes(this.state.filterBy))
+
   componentDidMount () {
     fetch('https://bot-battler-api.herokuapp.com/api/v1/bots') //eslint-disable-line
       .then(response => response.json())
@@ -50,12 +55,13 @@ class BotsPage extends React.Component {
   }
 
   render () {
-    const { yourBots, bot, sortBy } = this.state
-    const bots = this.sortedBots()
+    const { yourBots, bot, sortBy, filterBy } = this.state
+    let bots = this.sortedBots()
+    bots = this.filterBots(bots)
     return (
       <div>
         <YourBotArmy bots={yourBots} updateYourBots={this.updateYourBots} /> 
-        <SortBar sortBy={sortBy} updateSortBy={this.updateSortBy} />
+        <SortBar sortBy={sortBy} updateSortBy={this.updateSortBy} filterBy={filterBy} changeFilterBy={this.changeFilterBy}/>
         {bot ? <BotSpecs bot={bot} viewBotsSpecs={this.viewBotsSpecs} updateYourBots={this.updateYourBots} /> : <BotCollection bots={bots} viewBotsSpecs={this.viewBotsSpecs} />}
       </div>
     )

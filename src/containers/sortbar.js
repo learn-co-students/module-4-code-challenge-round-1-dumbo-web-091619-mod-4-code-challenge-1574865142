@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button } from 'semantic-ui-react'
+import { Grid, Button, Input } from 'semantic-ui-react'
 
 const handleClick = (props, event) => props.updateSortBy(event.target.name)
 const SortBar = (props) => {
@@ -29,6 +29,9 @@ const SortBar = (props) => {
         <Grid.Column textAlign='center'>
           <Button color={props.sortBy === 'armor' ? 'green' : 'grey'} name='armor' onClick={(event) => handleClick(props, event)}>Best Amor</Button>
         </Grid.Column>
+      </Grid.Row>
+      <Grid.Row centered>
+        <Input type='text' value={props.filterBy} onChange={(event) => props.changeFilterBy(event.target.value)} />
       </Grid.Row>
     </Grid>
   )
