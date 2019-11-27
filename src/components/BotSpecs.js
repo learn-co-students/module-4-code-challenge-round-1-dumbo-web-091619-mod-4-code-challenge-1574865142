@@ -19,6 +19,20 @@ const BotSpecs = props => {
       botType = <div />;
   }
 
+  // this function sets state.botSelected to false, triggering the YourBotArmy render
+  // func defined in BotsPage.js: line 61
+  // called on "Go Back" button click: line 75
+  const handleGoBack = (event) => {
+    props.backToPage()
+  }
+
+  // this function conditionally adds or removes the selected bot from state.myBots
+  // func defined in BotsPage.js: line 46
+  // called on "Enlist" / "Remove" button click: line 86
+  const handleEnlistOrRemove = (event) =>{
+    props.addOrRemoveBot(bot)
+  }
+
   return (
     <div className="ui segment">
       <div className="ui two column centered grid">
@@ -60,21 +74,20 @@ const BotSpecs = props => {
             </div>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log('connect this to a function that shows all bots')
+              onClick={
+                handleGoBack
               }
             >
               Go Back
             </button>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
+              onClick={
+                handleEnlistOrRemove
               }
             >
-              Enlist
+              {/* button text displays "Remove" if the selected bot is currently in your army, and "Enlist" if not */}
+              {props.enlistOrRemoveButtonText(bot)}
             </button>
           </div>
         </div>

@@ -19,16 +19,21 @@ const BotCard = props => {
       botType = <div />;
   }
 
+  // func defined on BotsPage.js: line 69
+  // called on BotCard click: line 33
   const handleClick = (event) => {
-    props.addOrRemoveBot(bot)
+    props.selectABot(bot)
   }
 
+  
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={handleClick}
+        onClick={
+          handleClick
+        }
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
