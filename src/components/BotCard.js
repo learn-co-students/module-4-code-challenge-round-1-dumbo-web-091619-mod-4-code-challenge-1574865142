@@ -3,6 +3,8 @@ import React from "react";
 const BotCard = props => {
   const { bot } = props;
 
+  // console.log(props.bot)
+
   let botType;
 
   switch (bot.bot_class) {
@@ -19,13 +21,18 @@ const BotCard = props => {
       botType = <div />;
   }
 
+  const handleBotClicked =(event) =>{
+    props.renderBot(bot)
+  }
+
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        
       >
+        <button id={bot.id} onClick={handleBotClicked}>Choose Bot</button>
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
         </div>
