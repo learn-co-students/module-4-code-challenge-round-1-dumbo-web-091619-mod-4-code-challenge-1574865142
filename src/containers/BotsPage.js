@@ -1,12 +1,34 @@
 import React from "react";
+import BotCollection from "./BotCollection";
+import YourBotArmy from "./YourBotArmy";
 
 class BotsPage extends React.Component {
-  //start here with your code for step one
+   
+  state = {
+    isClicked: false,
+    botArmy: []
+  }
+
+  // displayBot = () => {
+    
+  // }
+  
+
+   handleClick = (id) => {
+     console.log('clicked')
+     console.log(id)
+     this.setState({
+      //  isClicked: !this.state.isClicked,
+
+     })
+  }
 
   render() {
+    const allRobots = this.props.robots.map((robot) => <BotCollection robot={robot} key={robot.id} handleClick={this.handleClick}/>)
     return (
       <div>
-        {/* put your components here */}
+        <YourBotArmy handleClick={this.handleClick} clicked={this.state}/>
+        {allRobots}
       </div>
     );
   }
