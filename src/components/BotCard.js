@@ -22,7 +22,8 @@ const BotCard = props => {
   }
 
   const handleBotClicked =(event) =>{
-    props.renderBot(bot)
+    console.log(bot)
+    props.onBotClick(bot)
   }
 
   return (

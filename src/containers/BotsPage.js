@@ -3,6 +3,7 @@ import BotCollection from './BotCollection'
 import YourBotArmy from './YourBotArmy'
 import axios from 'axios'
 import BotSpecs from '../components/BotSpecs'
+import { throws } from "assert";
 
 
 class BotsPage extends React.Component {
@@ -24,12 +25,13 @@ class BotsPage extends React.Component {
 	  .then(r =>{
 		this.setState({
 			allBots: r.data
-		})
+    })
+    //iterate through r.data and set the state for individual bot to botChosen: false, 
 	  })
   }
 
   selectedBotFxn = (currentBot) => {
-    console.log(currentBot)
+    // console.log(currentBot)
     this.setState({
       botChosen: true,
       selectedBots: [currentBot, ...this.state.selectedBots]
@@ -39,12 +41,11 @@ class BotsPage extends React.Component {
   renderBot = (theBotIChose) =>{
     if(!this.state.selectedBots.includes(theBotIChose)){
       this.selectedBotFxn(theBotIChose)
-    }else{
-      this.removeABotFromMyArmy(theBotIChose)
     }
   }
 
   removeABotFromMyArmy = (botToBeRemoved) =>{
+
     let newMybot = this.state.selectedBots.filter(bot => {
      return bot.id !== botToBeRemoved.id
     })
@@ -60,11 +61,11 @@ class BotsPage extends React.Component {
   }
 
   render() {
-    // console.log(this.state.allBots)
     return (
       <div>
-        <YourBotArmy choseBots={this.state.selectedBots} renderBot={this.renderBot}/>
-        <BotCollection selectedBotFxn={this.selectedBotFxn} allBots={this.state.allBots} renderBot={this.renderBot}/>
+        <YourBotArmy choseBots={this.state.selectedBots} removeBot={this.removeABotFromMyArmy}/>
+
+        <BotCollection allBots={this.state.allBots} renderBot={this.renderBot}/>
        
       </div>
     );
