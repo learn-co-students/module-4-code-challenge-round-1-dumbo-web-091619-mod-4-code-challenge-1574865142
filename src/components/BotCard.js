@@ -1,4 +1,5 @@
 import React from "react";
+// import BotSpecs from './BotSpecs'
 
 const BotCard = props => {
   const { bot } = props;
@@ -19,14 +20,12 @@ const BotCard = props => {
       botType = <div />;
   }
 
-  const handleClick = () => {
-    if (props.addToArmy) {
-    props.addToArmy(props.bot)
-    } else {
-      props.removeFromArmy(props.bot)
-    }
-  }
 
+  //Here i changed the onClick event listener to try to show the BotSpecs onClick
+  //I moved the previous Click(enlisting bot) to the Bot Specs button.
+  const handleClick = () => {
+    props.botInfo(props.bot)
+  }
 
   return (
     <div className="ui column">

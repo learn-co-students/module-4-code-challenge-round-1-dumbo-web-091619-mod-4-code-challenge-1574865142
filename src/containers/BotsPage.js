@@ -6,7 +6,15 @@ class BotsPage extends React.Component {
   
   state ={
     bots: [],
-    myArmy: []
+    myArmy: [],
+    botInfo: ""
+  }
+
+  //code below should  change the state and replace collection of bots with bot info page
+  botInfo = (bot) => {
+    this.setState({
+      botInfo: bot
+    })
   }
 
   addToArmy = (bot) => {
@@ -36,7 +44,7 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        <BotContainer bots={this.state.bots} addToArmy={this.addToArmy}/>
+        <BotContainer bots={this.state.bots} addToArmy={this.addToArmy} botInfo={this.botInfo}/>
         <YourBotArmy bots={this.state.myArmy} removeFromArmy={this.removeFromArmy}/>
       </div>
     );
