@@ -8,7 +8,8 @@ class App extends Component {
     bots: [],
     army: [],
     clicked: false,
-    botSpec: {}
+    botSpec: {},
+    backUp: false
   }
 
   handleClick = (bot) => {
@@ -26,6 +27,10 @@ class App extends Component {
         bots: data
       })
     })
+  }
+
+  goBack(){
+
   }
 
   addToArmy = (bot) => {
