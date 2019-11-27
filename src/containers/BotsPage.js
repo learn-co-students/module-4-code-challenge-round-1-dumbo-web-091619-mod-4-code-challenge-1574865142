@@ -1,13 +1,16 @@
 import React from "react";
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
+import BotSpecs from "../components/BotSpecs"
 
 class BotsPage extends React.Component {
   //start here with your code for step one
 
   state = {
     bots: [],
-    botArmy: []
+    botArmy: [],
+    viewCollection: true,
+    selectedBot: {}
   }
 
   componentDidMount(){
@@ -20,7 +23,7 @@ class BotsPage extends React.Component {
     })
   }
 
-  handleCollectionClick = (bot) => {
+  enlistBot = (bot) => {
     if(!this.state.botArmy.includes(bot)){
       this.setState({
         botArmy: [...this.state.botArmy, bot]
@@ -28,6 +31,22 @@ class BotsPage extends React.Component {
     } else {
       alert("This bot is already in your army!")
     }
+    this.setState({
+      viewCollection: true
+    })
+  }
+
+  showCollection = () => {
+    this.setState({
+      viewCollection: true
+    })
+  }
+
+  handleCollectionClick = (bot) => {
+    this.setState({
+      viewCollection: false,
+      selectedBot: bot
+    })
   }
 
   handleArmyClick = (bot) => {
@@ -40,12 +59,13 @@ class BotsPage extends React.Component {
   }
 
   render() {
-
+    const botCollection = <BotCollection bots={this.state.bots} handleClick={this.handleCollectionClick} />
+    const botSpecs = <BotSpecs bot={this.state.selectedBot} enlistBot={this.enlistBot} showCollection={this.showCollection}/>
 
     return (
       <div>
         <YourBotArmy bots={this.state.botArmy} handleClick={this.handleArmyClick} />
-        <BotCollection bots={this.state.bots} handleClick={this.handleCollectionClick}/>
+        {this.state.viewCollection ? botCollection : botSpecs}
       </div>
     );
   }
