@@ -6,7 +6,16 @@ class App extends Component {
 
   state ={
     bots: [],
-    army: []
+    army: [],
+    clicked: false,
+    botSpec: {}
+  }
+
+  handleClick = (bot) => {
+    this.setState({
+      clicked: true,
+      botSpec: bot
+    })
   }
 
   getBots = () => {
@@ -28,7 +37,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BotsPage bots={this.state.bots} army={this.state.army} addToArmy ={this.addToArmy}/>
+        <BotsPage bots={this.state.bots} bot={this.state.botSpec} army={this.state.army} clicked={this.state.clicked} addToArmy ={this.addToArmy} handleClick={this.handleClick}/>
       </div>
     );
   }
