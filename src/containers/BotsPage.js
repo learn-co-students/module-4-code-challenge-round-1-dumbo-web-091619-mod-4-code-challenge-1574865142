@@ -1,11 +1,16 @@
 import React from "react";
 import BotCollection from './BotCollection'
 import YourBotArmy from './YourBotArmy'
+import BotSpecs from '../components/BotSpecs'
+
+
+
 class BotsPage extends React.Component {
   //start here with your code for step one
 state = {
   bots: [],
-  army: []
+  army: [],
+  clicked: false
 }
 
 
@@ -36,7 +41,8 @@ state = {
   }
   
   
-
+ 
+  
 
 
 
@@ -46,6 +52,7 @@ state = {
       <div>
         <YourBotArmy removeBot={this.removeBot} army={this.state.army} />
        <BotCollection addBot={this.addBot}  bots={this.state.bots}/>
+       <BotSpecs handleClick={this.handleClick} handleClick={this.state.clicked} bot={this.state.bots} />
       </div>
     );
   }
