@@ -10,10 +10,10 @@ class App extends Component {
  }
 
  handleClick = (botToClick) => {
-  console.log(botToClick) 
-  this.setState({
+  if(this.state.botArmy.sort(bot => bot.id !== botToClick.id))
+  {this.setState({
     botArmy: [...this.state.botArmy, botToClick]
-   })
+   })}
  }
 
   componentDidMount(){

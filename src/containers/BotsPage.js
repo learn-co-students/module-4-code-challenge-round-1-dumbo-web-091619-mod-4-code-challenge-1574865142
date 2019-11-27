@@ -7,7 +7,6 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        <YourBotArmy botArmy={this.props.botArmy}/>
         <BotCollection handleClick={this.props.handleClick} bots={this.props.bots}/>
         
         {/* put your components here */}
