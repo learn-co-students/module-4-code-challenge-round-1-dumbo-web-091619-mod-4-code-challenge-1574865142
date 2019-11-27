@@ -1,16 +1,18 @@
 import React from "react";
+import BotCollection from './BotCollection'
 
-class BotsPage extends React.Component {
-  //start here with your code for step one
+const BotPage = (props) => {
 
-  render() {
     return (
       <div>
-        {/* put your components here */}
+        <BotCollection
+          bots={props.displayBots}
+          addBot={props.addBot}
+          // removedBot={this.props.removedBot}
+        />
       </div>
     );
-  }
 
 }
 
-export default BotsPage;
+export default BotPage

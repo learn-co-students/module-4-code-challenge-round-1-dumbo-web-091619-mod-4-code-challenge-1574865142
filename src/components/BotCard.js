@@ -1,7 +1,77 @@
 import React from "react";
 
-const BotCard = props => {
-  const { bot } = props;
+export default class BotCard extends React.Component {
+
+//I could add a bot to the army
+//
+// I could remove a bot from the army
+//
+// I could prevent duplicate additions using state
+//
+// but I couldnt figure out how to flip the state of the card in Bot Collection back to 'false
+// so it could be readded to the army
+//
+// I tried a bunch of different things but I could not get a state change to trigger when clicking
+// on a card in YourBotArmy
+//
+// I knew what I had to do with the state, but couldnt figure out how to do it
+
+  state = {
+    added: false
+  }
+  
+  
+    onClickFunctionsAddBot = () => {
+    (this.props.addBot) ? this.props.addBot(this.props.bot) : this.onClickFunctionsRemoveBot()
+    // (this.props.addBot) ? this.props.addBot(this.props.bot) : this.props.removeBot(this.props.bot)
+    
+      //   if (this.props.removedBot === this.props.bot){
+      // this.setState({
+      //  added: false
+      // })
+    // }
+    
+        // console.log(this.state.added)
+    this.setState({
+      added: !this.state.added
+    })
+  }
+  
+    onClickFunctionsRemoveBot = () => {
+    // console.log("test")
+    // console.log(state)
+    // this.onClickFunctionsAddBot()
+    
+    this.props.removeBot(this.props.bot)
+    this.setState({
+      added: !this.state.added
+    })
+  }
+
+
+  // componentDidMount() {
+  //   if (this.props.removedBot === this.props.bot){
+  //     this.setState({
+  //      added: false
+  //     })
+  //   }
+  // }
+
+//  onClickFunctionsRemoveBot = (state) => {
+//     // console.log("test")
+//     // console.log(state)
+    
+//     this.props.removeBot(this.props.bot)
+//     this.props.bot.setState({
+//       added: !this.state.added
+//     })
+//   }
+
+render() {
+
+// console.log(this.props.removedBot === this.props.bot)
+
+const { bot } = this.props;
 
   let botType;
 
@@ -19,12 +89,14 @@ const BotCard = props => {
       botType = <div />;
   }
 
+
+
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={ !(this.state.added) ? this.onClickFunctionsAddBot : (null) }
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
@@ -56,7 +128,7 @@ const BotCard = props => {
       </div>
     </div>
   );
-
+}
 };
 
-export default BotCard;
+// export default BotCard;
