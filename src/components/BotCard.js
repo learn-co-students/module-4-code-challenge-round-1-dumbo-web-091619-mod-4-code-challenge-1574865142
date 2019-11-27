@@ -1,7 +1,7 @@
 import React from "react";
 
 const BotCard = props => {
-  const { bot, updateYourBots, toAdd } = props;
+  const { bot, viewBotsSpecs, updateYourBots, toAdd } = props;
 
   let botType;
 
@@ -24,7 +24,7 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => updateYourBots(bot, toAdd)}
+        onClick={() => !toAdd ? updateYourBots(bot, toAdd) : viewBotsSpecs(bot)}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
